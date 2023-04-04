@@ -1,0 +1,4 @@
+Commodity	Contract_Type	Delivery_Month	Delivery_Year	Strike_Price	Business_Date	Match_Time	Price_Indicator	Price	Message_Code	Amend_Code	Volume
+ACF	F	K	2023	0000000	20230328	173851	 	0000029200	Y	D	00020
+ACF	F	M	2024	0000000	20230328	172312	 	0000028500	Y	D	00030
+IN	F	H	2023	0000000	20230328	180337	 	0001705187	Y	D	00925
