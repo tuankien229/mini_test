@@ -1,2 +1,0 @@
-Commodity	Contract_Type	Delivery_Month	Delivery_Year	Strike_Price	Business_Date	Match_Time	Price_Indicator	Price	Message_Code	Amend_Code	Volume
-FEF	F	K	2023	0000000	20230329	165757	 	0000012375	Y	D	00200
