@@ -51,7 +51,7 @@ for i in range(num_tries):
         dialog = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "sgx-dialog#sgx-select-dialog")))
 
         # Click on the second option in the dropdown
-        option = dialog.find_element_by_xpath("//sgx-select-picker-option[2]/label/span")
+        option = dialog.find_element_by_xpath("//sgx-select-picker-option/label/span")
         option.click()
 
         dropdown_input = driver.find_element_by_xpath("//article[@id='page-container']/template-base/div/div/section/div/sgx-widgets-wrapper/widget-research-and-reports-download/widget-reports-derivatives-tick-and-trade-cancellation/div/sgx-input-select[2]/label/span[2]/span")
