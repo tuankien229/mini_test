@@ -1,0 +1,10 @@
+2023-04-05 15:45:45,675 - DEBUG - Debug message
+2023-04-05 15:45:45,675 - INFO - Info message
+2023-04-05 15:45:45,675 - WARNING - Warning message
+2023-04-05 15:45:52,022 - DEBUG - Debug message
+2023-04-05 15:45:52,023 - INFO - Info message
+2023-04-05 15:45:52,023 - WARNING - Warning message
+2023-04-05 15:47:58,654 - DEBUG - Debug message
+2023-04-05 15:47:58,654 - INFO - Info message
+2023-04-05 15:47:58,654 - WARNING - Warning message
+2023-04-05 15:47:58,662 - DEBUG - POST request received
