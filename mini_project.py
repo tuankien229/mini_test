@@ -6,11 +6,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException,  NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementClickInterceptedException
+from selenium.webdriver.remote.remote_connection import LOGGER
 import glob
 import os
 import time
 import argparse
 import logging
+import re
+
 
 def choose_dropdown(driver:webdriver, num:int, type_data:str, is_select_file:bool, is_download:bool):
     if type_data == 'Time and Sales Historical Data':
@@ -121,24 +124,26 @@ class IgnorePostFilter(logging.Filter):
         return "POST" not in record.getMessage()
 
 # Set up the logger
-logger = logging.getLogger()
+logger = logging.getLogger('selenium')
 logger.setLevel(logging.DEBUG)
 
 # Add a console handler with the custom filter
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-console_handler.addFilter(IgnorePostFilter())
+# console_handler.addFilter(IgnorePostFilter())
 console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
 # Add a file handler without the custom filter
-file_handler = logging.FileHandler('example.log')
+file_handler = logging.FileHandler('selenium.log')
 file_handler.setLevel(logging.DEBUG)
 file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
-file_handler.addFilter(IgnorePostFilter())
+# file_handler.addFilter(IgnorePostFilter())
 logger.addHandler(file_handler)
+# Disable the default logging of the remote connection
+LOGGER.setLevel(logging.WARNING)
 
 # Log some messages
 logger.debug('Debug message')

@@ -6,10 +6,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException,  NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementClickInterceptedException
+from selenium.webdriver.common.log import Logger
 import glob
 import os
 import time
 import argparse
+from io import StringIO
+import sys
+
+# Redirect stderr to a file
+buffer = StringIO()
+sys.stderr = buffer
+
 
 def choose_dropdown(driver, num, type_link):
     if type_link == 'type_of_data':
@@ -100,6 +108,11 @@ if args.command == 'auto':
                 for days in range(1, 6):
                     choose_dropdown(driver, days, 'date')
                     downloading_file(driver)
+                    error_messages = [line.strip() for line in buffer.getvalue().splitlines() if 'ERROR' in line]
+
+                    # Print the error messages
+                    for message in error_messages:
+                        print(f'----------{message}')
                     time.sleep(10)
                 driver.delete_all_cookies()
                 driver.quit()
@@ -114,4 +127,3 @@ if args.command == 'auto':
     driver.quit()
 elif args.command == 'manual':
     print(args.list_file)
-
