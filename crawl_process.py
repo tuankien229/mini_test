@@ -76,10 +76,10 @@ def setup_browser(name_file:str):
 
     
     # get driver path
-    # path = 'C:/Users/'
-    # msedgedriver = 'msedgedriver.exe'
-    # driver_path = glob.glob(f'{path}/**/{msedgedriver}', recursive=True)
-    driver_path='C:/Users/tuank/Work/edgedriver_win64/msedgedriver.exe'
+    # driver_path='path/to/msedgedriver.exe'
+    path = 'C:/Users/'
+    msedgedriver = 'msedgedriver.exe'
+    driver_path = glob.glob(f'{path}/**/{msedgedriver}', recursive=True)
 
 
     # create EdgeOptions object and set download directory
@@ -115,6 +115,8 @@ manualparsers.add_argument('-lf','--list_files', nargs='+', help="List of files 
 manualparsers.add_argument('-d','--days_ago', type=int,default=0, help="(type:int, default:0) Day users want to get. Choose day ago to download: (0 -> 4 day(s) ago )")
 args = parser.parse_args()
 
+
+os.remove('selenium.log')
 class IgnorePostFilter(logging.Filter):
     def filter(self, record):
         return "POST" not in record.getMessage()
@@ -140,7 +142,7 @@ file_handler_1.setFormatter(file_formatter1)
 file_handler_1.addFilter(IgnorePostFilter())
 logger.addHandler(file_handler_1)
 # Add a file handler without the custom filter
-file_handler_2 = logging.FileHandler('logging.log')
+file_handler_2 = logging.FileHandler('process.log')
 file_handler_2.setLevel(logging.DEBUG)
 file_formatter2 = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 file_handler_2.setFormatter(file_formatter2)
@@ -169,6 +171,7 @@ if args.command == 'auto':
             logging.info(f'Downloaded file: {name_file}')
         else:
             logging.debug(f"Can't downloaded file: {name_file}|{str(num)}|{str(days_ago)}")
+            driver.quit()
 elif args.command == 'manual':
     dir_data = list_file_target[args.type_data - 1]
     type_data = list(dir_data.keys())[0]
@@ -182,3 +185,4 @@ elif args.command == 'manual':
             logging.info(f'Downloaded file: {name_file}')
         else:
             logging.debug(f"Can't downloaded file: {name_file}|{str(num)}|{str(days_ago)}")
+            driver.quit()

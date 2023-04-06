@@ -13,4 +13,3 @@ with open('selenium.log', 'r') as log:
         print(result.stdout.decode())
         print(result.stderr.decode())
 
-os.remove('selenium.log')
